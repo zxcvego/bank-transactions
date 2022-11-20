@@ -1,0 +1,9 @@
+:root {
+	--footer: #5a6186;
+}
+
+.footer {
+	height: 58px;
+	padding: 5px 0;
+	background-color: var(--footer);
+}
