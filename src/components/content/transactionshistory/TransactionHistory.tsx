@@ -45,7 +45,7 @@ const TransactionHistory = ({
 				) : null}
 
 				<p>{page}</p>
-				{!(endOfRange + 5 > transactionDetails.length) ? (
+				{!(endOfRange + 1 > transactionDetails.length) ? (
 					<FontAwesomeIcon
 						icon={faArrowRight}
 						size="xs"
@@ -60,11 +60,15 @@ const TransactionHistory = ({
 		<section>
 			<div className={styles.transactions}>
 				<h1>Recent transactions</h1>
-				{transactionDetails
-					.map((transaction: TransactionDetails) => (
-						<SingleTransaction key={transaction.id} {...transaction} />
-					))
-					.slice(startOfRange, endOfRange)}
+				<ul>
+					{transactionDetails
+						.map((transaction: TransactionDetails) => (
+							<li>
+								<SingleTransaction key={transaction.id} {...transaction} />
+							</li>
+						))
+						.slice(startOfRange, endOfRange)}
+				</ul>
 				<div className={styles.pagination}>{showPagination()}</div>
 			</div>
 		</section>

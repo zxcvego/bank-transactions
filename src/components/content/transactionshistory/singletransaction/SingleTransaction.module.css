@@ -1,0 +1,65 @@
+:root {
+	--trend-up: #0f8414;
+	--trend-down: #dd3131;
+	--name: #2f3760;
+	--date: #babcc6;
+	--information: #7f849d;
+	--amount: #2e365f;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	padding: 5px 0;
+}
+
+.trend {
+	padding-right: 2%;
+}
+.trend-up {
+	color: var(--trend-up);
+}
+
+.trend-down {
+	color: var(--trend-down);
+}
+
+.left {
+	width: 60%;
+}
+.top {
+	display: flex;
+	gap: 5px;
+}
+
+.name {
+	color: var(--name);
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.date {
+	color: var(--date);
+}
+
+.information {
+	color: #7f849d;
+}
+
+.right {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	margin-left: 10%;
+}
+.right svg {
+	cursor: pointer;
+}
+
+.amount {
+	display: flex;
+	gap: 5px;
+	color: var(--amount);
+	font-weight: 600;
+}

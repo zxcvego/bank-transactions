@@ -11,6 +11,16 @@
 	cursor: pointer;
 }
 
+.transactions {
+	margin: 1% 0;
+}
+
 .transactions h1 {
 	text-align: center;
+}
+
+.transactions ul {
+	list-style: none;
+	overflow: hidden;
+	padding: 0 2%;
 }
