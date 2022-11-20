@@ -1,0 +1,13 @@
+.balance {
+	padding: 10px 0;
+}
+.balance h1 {
+	margin: 0;
+	text-align: center;
+}
+
+.balance p {
+	font-size: 2rem;
+	color: #2e365f;
+	text-align: center;
+}
