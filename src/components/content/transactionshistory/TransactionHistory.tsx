@@ -14,8 +14,10 @@ const transactionsOnPage = 5;
 
 const TransactionHistory = ({
 	transactionDetails,
+	filterVal,
 }: {
 	transactionDetails: TransactionDetails[];
+	filterVal: string;
 }) => {
 	const [startOfRange, setStartOfRange] = useState<number>(0);
 	const [endOfRange, setEndOfRange] = useState<number>(5);
@@ -63,8 +65,8 @@ const TransactionHistory = ({
 				<ul>
 					{transactionDetails
 						.map((transaction: TransactionDetails) => (
-							<li>
-								<SingleTransaction key={transaction.id} {...transaction} />
+							<li key={transaction.id}>
+								<SingleTransaction {...transaction} />
 							</li>
 						))
 						.slice(startOfRange, endOfRange)}
