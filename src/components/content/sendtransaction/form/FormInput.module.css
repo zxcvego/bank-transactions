@@ -1,0 +1,29 @@
+:root {
+	--input-border: #8f8f8f;
+	--label: #49548b;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.field label {
+	padding-bottom: 5px;
+	color: var(--label);
+	font-weight: 500;
+}
+
+.field input {
+	border: 1px solid #8f8f8f;
+	border-radius: 16px;
+	height: 30px;
+	outline: none;
+	text-align: center;
+}
+
+.field input::placeholder {
+	text-align: center;
+}

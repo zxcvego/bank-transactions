@@ -1,0 +1,44 @@
+:root {
+	--submit-button: #49548b;
+}
+
+.form {
+	overflow: hidden;
+}
+.form h1 {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.inputs {
+	width: fit-content;
+	margin: 10px auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.row {
+	display: flex;
+	gap: 60px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	outline: none;
+	padding-bottom: 10px;
+}
+
+.buttons input:hover {
+	cursor: pointer;
+}
+
+.buttons input {
+	width: 121px;
+	height: 29px;
+	background-color: var(--submit-button);
+	color: white;
+	border: none;
+	border-radius: 16px;
+}
