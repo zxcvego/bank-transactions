@@ -1,0 +1,37 @@
+:root {
+	--container: #5a6186;
+	--containers-child: #f8f8f7;
+}
+
+.container {
+	background-color: var(--container);
+	margin: 10px auto;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 60vw;
+}
+
+.container * {
+	background-color: var(--containers-child);
+}
+
+.top {
+	background-color: var(--container);
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.top-left {
+	background-color: var(--container);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 40%;
+}
+
+.top-right {
+	width: 60%;
+}
