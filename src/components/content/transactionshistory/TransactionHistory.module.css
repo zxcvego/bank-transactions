@@ -1,0 +1,16 @@
+.pagination {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 5px;
+	user-select: none;
+}
+
+.pagination svg {
+	cursor: pointer;
+}
+
+.transactions h1 {
+	text-align: center;
+}
