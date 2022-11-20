@@ -24,6 +24,7 @@
 .buttons {
 	display: flex;
 	justify-content: center;
+	margin: auto;
 	gap: 10px;
 	outline: none;
 	padding: 10px 0;
@@ -46,4 +47,11 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+	white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+	.buttons {
+		width: 80%;
+	}
 }

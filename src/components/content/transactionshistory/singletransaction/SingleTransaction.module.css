@@ -50,8 +50,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	align-items: center;
 	margin-left: 10%;
+	align-items: flex-end;
 }
 .right svg {
 	cursor: pointer;
@@ -59,7 +59,27 @@
 
 .amount {
 	display: flex;
+	align-items: center;
 	gap: 5px;
 	color: var(--amount);
 	font-weight: 600;
+}
+
+@media (max-width: 767.98px) {
+	.left {
+		width: 85%;
+	}
+	.row {
+		flex-direction: column;
+	}
+
+	.amount {
+		justify-content: flex-start;
+	}
+	.right {
+		margin: 0;
+		align-items: center;
+		margin: 10px 0;
+		gap: 2px;
+	}
 }

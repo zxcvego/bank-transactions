@@ -13,6 +13,8 @@
 
 .transactions {
 	margin: 1% 0;
+	height: 100%;
+	width: 100%;
 }
 
 .transactions h1 {
@@ -24,3 +26,4 @@
 	overflow: hidden;
 	padding: 0 2%;
 }
+
