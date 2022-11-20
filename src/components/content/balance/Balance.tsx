@@ -6,7 +6,7 @@ const Balance = ({ currentBalance }: { currentBalance: number }) => {
 		<section>
 			<div className={styles.balance}>
 				<h1>Your balance:</h1>
-				<p>{currentBalance} PLN</p>
+				<p>{currentBalance.toFixed(2)} PLN</p>
 			</div>
 		</section>
 	);

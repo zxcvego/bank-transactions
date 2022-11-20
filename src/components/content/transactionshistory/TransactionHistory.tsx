@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./TransactionHistory.module.css";
 import { TransactionDetails } from "../Content";
 import SingleTransaction from "./singletransaction/SingleTransaction";
@@ -15,13 +15,24 @@ const transactionsOnPage = 5;
 const TransactionHistory = ({
 	transactionDetails,
 	filterVal,
+	setCurrentBalance,
 }: {
 	transactionDetails: TransactionDetails[];
 	filterVal: string;
+	setCurrentBalance: React.Dispatch<React.SetStateAction<number>>;
 }) => {
 	const [startOfRange, setStartOfRange] = useState<number>(0);
 	const [endOfRange, setEndOfRange] = useState<number>(5);
-	const page = endOfRange / transactionsOnPage;
+
+	const filterTransactions = () =>
+		transactionDetails.filter((transaction: TransactionDetails) =>
+			filterVal !== ""
+				? transaction.beneficiary
+						.toLowerCase()
+						.includes(filterVal.toLowerCase())
+				: transaction
+		);
+	const filteredTransactions: TransactionDetails[] = filterTransactions();
 
 	const changeRange = (operation: RANGE_OPERATION) => {
 		switch (operation) {
@@ -38,7 +49,7 @@ const TransactionHistory = ({
 	const showPagination = () => {
 		return (
 			<>
-				{startOfRange !== 0 ? (
+				{startOfRange !== 0 && filterTransactions().length !== 0 ? (
 					<FontAwesomeIcon
 						icon={faArrowLeft}
 						size="xs"
@@ -47,7 +58,7 @@ const TransactionHistory = ({
 				) : null}
 
 				<p>{page}</p>
-				{!(endOfRange + 1 > transactionDetails.length) ? (
+				{!(endOfRange + 1 > filterTransactions().length) ? (
 					<FontAwesomeIcon
 						icon={faArrowRight}
 						size="xs"
@@ -58,12 +69,28 @@ const TransactionHistory = ({
 		);
 	};
 
+	useEffect(() => {
+		const updateBalance = () => {
+			let newBalance = 0;
+			const copyOfTransactions = [...filteredTransactions];
+			copyOfTransactions.forEach(
+				(transaction: TransactionDetails) =>
+					(newBalance = newBalance + transaction.amount)
+			);
+			setCurrentBalance(newBalance);
+		};
+		updateBalance();
+	});
+
+	const page =
+		filterTransactions().length !== 0 ? endOfRange / transactionsOnPage : null;
+
 	return (
 		<section>
 			<div className={styles.transactions}>
 				<h1>Recent transactions</h1>
 				<ul>
-					{transactionDetails
+					{filteredTransactions
 						.map((transaction: TransactionDetails) => (
 							<li key={transaction.id}>
 								<SingleTransaction {...transaction} />

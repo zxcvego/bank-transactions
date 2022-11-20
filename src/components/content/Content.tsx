@@ -32,13 +32,12 @@ const Content = () => {
 				setTransactionDetails(data);
 				setCurrentBalance(
 					data.reduce(
-						(sum: number, obj: TransactionDetails) => (sum = +obj.amount)
+						(sum: number, { amount }: TransactionDetails) => (sum = +amount)
 					)
 				);
 				setFetchingData(false);
 			});
 	}, []);
-	console.log(typeof currentBalance);
 	return (
 		<main>
 			<div className={styles.container}>
@@ -55,6 +54,7 @@ const Content = () => {
 					<TransactionHistory
 						transactionDetails={transactionDetails}
 						filterVal={filterVal}
+						setCurrentBalance={setCurrentBalance}
 					/>
 				)}
 			</div>
