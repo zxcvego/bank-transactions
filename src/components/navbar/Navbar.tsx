@@ -8,7 +8,7 @@ const Navbar = () => {
 		<header>
 			<div className={styles.navbar}>
 				<div className={styles["navbar-logo"]}>
-					<FontAwesomeIcon icon={faBuildingColumns} size="4x" />
+					<FontAwesomeIcon icon={faBuildingColumns} size="3x" />
 					<div className={styles["navbar-logo-title"]}>
 						<p>Your Bank</p>
 						<p>Transactions</p>
