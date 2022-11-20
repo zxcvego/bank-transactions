@@ -1,17 +1,21 @@
 import React from "react";
 import styles from "./FormInput.module.css";
+import { FormInputI } from "../SendTransaction";
+const FormInput = ({ label, type, value, setValue }: FormInputI) => {
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+		setValue(e.target.value);
 
-const FormInput = ({
-	name,
-	maxLength,
-}: {
-	name: string;
-	maxLength: number;
-}) => {
 	return (
 		<div className={styles.field}>
-			<label>{`${name}:`}</label>
-			<input type="text" placeholder={name} maxLength={maxLength} required />
+			<label>{`${label}:`}</label>
+			<input
+				type={type}
+				min={0}
+				step={0.01}
+				value={value}
+				onChange={handleOnChange}
+				required
+			/>
 		</div>
 	);
 };

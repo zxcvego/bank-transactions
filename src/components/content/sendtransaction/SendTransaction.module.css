@@ -7,19 +7,18 @@
 }
 .form h1 {
 	text-align: center;
-	padding-top: 10px;
+	padding: 10px 0;
 }
 
 .inputs {
 	width: fit-content;
-	margin: 10px auto;
+	margin: 0px auto;
 	display: flex;
 	flex-direction: column;
 }
 
 .row {
 	display: flex;
-	gap: 60px;
 }
 
 .buttons {
@@ -27,7 +26,7 @@
 	justify-content: center;
 	gap: 10px;
 	outline: none;
-	padding-bottom: 10px;
+	padding: 10px 0;
 }
 
 .buttons input:hover {
@@ -41,4 +40,10 @@
 	color: white;
 	border: none;
 	border-radius: 16px;
+}
+
+.alert {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
 }
