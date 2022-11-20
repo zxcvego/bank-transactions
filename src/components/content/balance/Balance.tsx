@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Balance.module.css";
 
-const Balance = () => {
+const Balance = ({ currentBalance }: { currentBalance: number }) => {
 	return (
 		<section>
 			<div className={styles.balance}>
 				<h1>Your balance:</h1>
-				<p>999 PLN</p>
+				<p>{currentBalance} PLN</p>
 			</div>
 		</section>
 	);

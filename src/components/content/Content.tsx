@@ -22,30 +22,40 @@ const Content = () => {
 		TransactionDetails[]
 	>([]);
 	const [fetchingData, setFetchingData] = useState<boolean>(true);
+	const [filterVal, setFilterVal] = useState("");
+	const [currentBalance, setCurrentBalance] = useState<number>(0);
 
 	useEffect(() => {
 		fetch(API_URL)
 			.then((response) => response.json())
 			.then((data) => {
 				setTransactionDetails(data);
+				setCurrentBalance(
+					data.reduce(
+						(sum: number, obj: TransactionDetails) => (sum = +obj.amount)
+					)
+				);
 				setFetchingData(false);
 			});
 	}, []);
-
+	console.log(typeof currentBalance);
 	return (
 		<main>
 			<div className={styles.container}>
 				<div className={styles.top}>
 					<div className={styles["top-left"]}>
-						<Balance />
-						<Filter />
+						<Balance currentBalance={currentBalance}/>
+						<Filter filterVal={filterVal} setFilterVal={setFilterVal} />
 					</div>
 					<div className={styles["top-right"]}>
 						<SendTransaction />
 					</div>
 				</div>
 				{fetchingData ? null : (
-					<TransactionHistory transactionDetails={transactionDetails} />
+					<TransactionHistory
+						transactionDetails={transactionDetails}
+						filterVal={filterVal}
+					/>
 				)}
 			</div>
 		</main>
