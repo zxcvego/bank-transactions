@@ -10,7 +10,7 @@ enum RANGE_OPERATION {
 	DECREASE,
 }
 
-const transactionsOnPage = 20;
+const TRANSACTIONS_PER_PAGE = 20;
 
 const TransactionHistory = ({
 	transactionDetails,
@@ -26,7 +26,7 @@ const TransactionHistory = ({
 	setCurrentBalance: React.Dispatch<React.SetStateAction<number>>;
 }) => {
 	const [startOfRange, setStartOfRange] = useState<number>(0);
-	const [endOfRange, setEndOfRange] = useState<number>(transactionsOnPage);
+	const [endOfRange, setEndOfRange] = useState<number>(TRANSACTIONS_PER_PAGE);
 
 	const filterTransactions = () =>
 		transactionDetails.filter((transaction: TransactionDetails) =>
@@ -50,18 +50,18 @@ const TransactionHistory = ({
 
 	useEffect(() => {
 		setStartOfRange(0);
-		setEndOfRange(transactionsOnPage);
+		setEndOfRange(TRANSACTIONS_PER_PAGE);
 	}, [filterVal]);
 
 	const changeRange = (operation: RANGE_OPERATION) => {
 		switch (operation) {
 			case RANGE_OPERATION.INCREASE:
-				setStartOfRange(startOfRange + transactionsOnPage);
-				setEndOfRange(endOfRange + transactionsOnPage);
+				setStartOfRange(startOfRange + TRANSACTIONS_PER_PAGE);
+				setEndOfRange(endOfRange + TRANSACTIONS_PER_PAGE);
 				break;
 			case RANGE_OPERATION.DECREASE:
-				setStartOfRange(startOfRange - transactionsOnPage);
-				setEndOfRange(endOfRange - transactionsOnPage);
+				setStartOfRange(startOfRange - TRANSACTIONS_PER_PAGE);
+				setEndOfRange(endOfRange - TRANSACTIONS_PER_PAGE);
 				break;
 		}
 	};
@@ -99,7 +99,7 @@ const TransactionHistory = ({
 	};
 
 	const page =
-		filterTransactions().length !== 0 ? endOfRange / transactionsOnPage : null;
+		filterTransactions().length !== 0 ? endOfRange / TRANSACTIONS_PER_PAGE : null;
 
 	return (
 		<section>
