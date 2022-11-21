@@ -5,12 +5,12 @@
 
 .container {
 	background-color: var(--container);
-	margin: 10px auto;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	width: 900px;
+	margin: 10px auto;
 }
 
 .container * {
@@ -44,6 +44,7 @@
 @media (max-width: 767.98px) {
 	.container {
 		padding: 0;
+		margin-top: 0;
 	}
 	.top {
 		flex-direction: column-reverse;
