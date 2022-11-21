@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Balance from "./balance/Balance";
 import styles from "./Content.module.css";
 import Filter from "./filter/Filter";
-import Loading from "./loading/Loading";
+import Loading from "../loading/Loading";
 import SendTransaction from "./sendtransaction/SendTransaction";
 import TransactionHistory from "./transactionshistory/TransactionHistory";
 
