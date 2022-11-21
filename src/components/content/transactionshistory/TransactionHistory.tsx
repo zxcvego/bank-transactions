@@ -116,6 +116,9 @@ const TransactionHistory = ({
 							</li>
 						))
 						.slice(startOfRange, endOfRange)}
+					{filteredTransactions.length === 0 ? (
+						<p>Unfortunately, we could not find any transactions.</p>
+					) : null}
 				</ul>
 				<div className={styles.pagination}>{showPagination()}</div>
 			</div>
