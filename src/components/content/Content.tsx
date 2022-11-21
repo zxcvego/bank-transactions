@@ -52,6 +52,7 @@ const Content = () => {
 				{fetchingData ? null : (
 					<TransactionHistory
 						transactionDetails={transactionDetails}
+						setTransactionDetails={setTransactionDetails}
 						filterVal={filterVal}
 						setCurrentBalance={setCurrentBalance}
 					/>

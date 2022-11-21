@@ -8,6 +8,10 @@ import {
 	faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
+interface TransactionProps extends TransactionDetails {
+	removeTransaction: (account: string) => void;
+}
+
 const SingleTransaction = ({
 	amount,
 	beneficiary,
@@ -15,7 +19,8 @@ const SingleTransaction = ({
 	address,
 	date,
 	description,
-}: TransactionDetails) => {
+	removeTransaction,
+}: TransactionProps) => {
 	const dateObject = new Date(date);
 	const month = Number(dateObject.getMonth()) + 1;
 	const year = dateObject.getFullYear();
@@ -58,7 +63,11 @@ const SingleTransaction = ({
 
 					<div className={styles.amount}>
 						<p>{`${amount}`} PLN</p>
-						<FontAwesomeIcon icon={faTrash} />
+						<FontAwesomeIcon
+							icon={faTrash}
+							size="sm"
+							onClick={() => removeTransaction(account)}
+						/>
 					</div>
 				</div>
 			</div>

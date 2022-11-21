@@ -14,10 +14,14 @@ const transactionsOnPage = 20;
 
 const TransactionHistory = ({
 	transactionDetails,
+	setTransactionDetails,
 	filterVal,
 	setCurrentBalance,
 }: {
 	transactionDetails: TransactionDetails[];
+	setTransactionDetails: React.Dispatch<
+		React.SetStateAction<TransactionDetails[]>
+	>;
 	filterVal: string;
 	setCurrentBalance: React.Dispatch<React.SetStateAction<number>>;
 }) => {
@@ -85,6 +89,15 @@ const TransactionHistory = ({
 		);
 	};
 
+	const removeTransaction = (account: string) => {
+		const transactionsCopy = [...transactionDetails];
+		setTransactionDetails(
+			transactionsCopy.filter((transaction) =>
+				transaction.account === account ? null : transaction
+			)
+		);
+	};
+
 	const page =
 		filterTransactions().length !== 0 ? endOfRange / transactionsOnPage : null;
 
@@ -96,7 +109,10 @@ const TransactionHistory = ({
 					{filteredTransactions
 						.map((transaction: TransactionDetails) => (
 							<li key={transaction.id}>
-								<SingleTransaction {...transaction} />
+								<SingleTransaction
+									{...transaction}
+									removeTransaction={removeTransaction}
+								/>
 							</li>
 						))
 						.slice(startOfRange, endOfRange)}
