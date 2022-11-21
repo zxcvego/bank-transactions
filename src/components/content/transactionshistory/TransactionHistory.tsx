@@ -10,7 +10,7 @@ enum RANGE_OPERATION {
 	DECREASE,
 }
 
-const transactionsOnPage = 5;
+const transactionsOnPage = 20;
 
 const TransactionHistory = ({
 	transactionDetails,
@@ -22,7 +22,7 @@ const TransactionHistory = ({
 	setCurrentBalance: React.Dispatch<React.SetStateAction<number>>;
 }) => {
 	const [startOfRange, setStartOfRange] = useState<number>(0);
-	const [endOfRange, setEndOfRange] = useState<number>(5);
+	const [endOfRange, setEndOfRange] = useState<number>(transactionsOnPage);
 
 	const filterTransactions = () =>
 		transactionDetails.filter((transaction: TransactionDetails) =>
@@ -32,17 +32,33 @@ const TransactionHistory = ({
 						.includes(filterVal.toLowerCase())
 				: transaction
 		);
-	const filteredTransactions: TransactionDetails[] = filterTransactions();
+
+	const filteredTransactions = filterTransactions();
+
+	useEffect(() => {
+		const updateBalance = () => {
+			setCurrentBalance(
+				filteredTransactions.reduce((sum, { amount }) => sum + amount, 0)
+			);
+		};
+		updateBalance();
+	});
+
+	useEffect(() => {
+		setStartOfRange(0);
+		setEndOfRange(transactionsOnPage);
+	}, [filterVal]);
 
 	const changeRange = (operation: RANGE_OPERATION) => {
 		switch (operation) {
 			case RANGE_OPERATION.INCREASE:
-				setStartOfRange(startOfRange + 5);
-				setEndOfRange(endOfRange + 5);
+				setStartOfRange(startOfRange + transactionsOnPage);
+				setEndOfRange(endOfRange + transactionsOnPage);
 				break;
 			case RANGE_OPERATION.DECREASE:
-				setStartOfRange(startOfRange - 5);
-				setEndOfRange(endOfRange - 5);
+				setStartOfRange(startOfRange - transactionsOnPage);
+				setEndOfRange(endOfRange - transactionsOnPage);
+				break;
 		}
 	};
 
@@ -68,19 +84,6 @@ const TransactionHistory = ({
 			</>
 		);
 	};
-
-	useEffect(() => {
-		const updateBalance = () => {
-			let newBalance = 0;
-			const copyOfTransactions = [...filteredTransactions];
-			copyOfTransactions.forEach(
-				(transaction: TransactionDetails) =>
-					(newBalance = newBalance + transaction.amount)
-			);
-			setCurrentBalance(newBalance);
-		};
-		updateBalance();
-	});
 
 	const page =
 		filterTransactions().length !== 0 ? endOfRange / transactionsOnPage : null;
