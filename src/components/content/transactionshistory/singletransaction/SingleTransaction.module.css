@@ -50,7 +50,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin-left: 10%;
+	width: 100%;
 	align-items: flex-end;
 }
 .right svg {
@@ -71,6 +71,7 @@
 	}
 	.row {
 		flex-direction: column;
+		border-top: 1px solid var(--information);
 	}
 
 	.amount {
@@ -81,5 +82,9 @@
 		align-items: center;
 		margin: 10px 0;
 		gap: 2px;
+	}
+
+	.trend {
+		margin: 5px 0;
 	}
 }

@@ -46,7 +46,10 @@ const Content = () => {
 						<Filter filterVal={filterVal} setFilterVal={setFilterVal} />
 					</div>
 					<div className={styles["top-right"]}>
-						<SendTransaction />
+						<SendTransaction
+							transactionDetails={transactionDetails}
+							setTransactionDetails={setTransactionDetails}
+						/>
 					</div>
 				</div>
 				{fetchingData ? null : (

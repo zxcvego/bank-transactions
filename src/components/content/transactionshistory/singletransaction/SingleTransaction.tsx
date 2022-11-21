@@ -46,7 +46,6 @@ const SingleTransaction = ({
 		<>
 			<div className={styles.row}>
 				{showTrendingArrow()}
-				<div className={styles.container}></div>
 				<div className={styles.left}>
 					<div className={styles.top}>
 						<p className={styles.name}>{beneficiary}</p>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./SendTransaction.module.css";
 import FormInput from "./form/FormInput";
+import { TransactionDetails } from "../Content";
 export interface FormInputI {
 	name: string;
 	label: string;
@@ -9,7 +10,15 @@ export interface FormInputI {
 	setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SendTransaction = () => {
+const SendTransaction = ({
+	transactionDetails,
+	setTransactionDetails,
+}: {
+	transactionDetails: TransactionDetails[];
+	setTransactionDetails: React.Dispatch<
+		React.SetStateAction<TransactionDetails[]>
+	>;
+}) => {
 	const [amountVal, setAmountVal] = useState("");
 	const [accountVal, setAccountVal] = useState("");
 	const [addressVal, setAddressVal] = useState("");
@@ -60,7 +69,22 @@ const SendTransaction = () => {
 		return false;
 	};
 
-	const handleSubmit = (e: any) => {
+	const addTransaction = () => {
+		const transaction: TransactionDetails = {
+			id: transactionDetails.length,
+			amount: Number(amountVal),
+			beneficiary: "-",
+			account: accountVal,
+			address: addressVal,
+			date: String(new Date()),
+			description: descriptionVal,
+		};
+		const copyTransactions = [...transactionDetails];
+		copyTransactions.unshift(transaction);
+		setTransactionDetails(copyTransactions);
+	};
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const isFormValid = validateForm();
 		if (!isFormValid) {
@@ -69,6 +93,7 @@ const SendTransaction = () => {
 		}
 
 		setIsFormValid(true);
+		addTransaction();
 		clearInputs();
 	};
 
